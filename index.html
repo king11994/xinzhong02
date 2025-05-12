@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>新中物業 維修預約</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; padding: 20px; background: #f5f5f5; }
+        input, select, textarea { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; }
+        button { background: #9b1c31; color: white; padding: 12px; border: none; border-radius: 4px; cursor: pointer; width: 100%; }
+        button:hover { background: #7a1426; }
+    </style>
+</head>
+<body>
+    <h2 style="text-align:center;">維修預約申請</h2>
+
+    <!-- 替換下方 action 為您的 Google 表單 formResponse 網址 -->
+    <form 
+        action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScQs-RKEFU4QbvhlTJss-aeiVujme_QJZ8iljnzrv8SEWuk0A/formResponse " 
+        method="POST" 
+        target="hidden_iframe" 
+        onsubmit="submitted=true;"
+    >
+        <!-- 替換 name 為 Google 表單欄位的 entry.XXXXXXXX -->
+        <label>申請單位（固定：新中）</label>
+        <input type="text" value="新中" readonly>
+
+        <label>經辦人 <span style="color:red;">*</span></label>
+        <input type="text" name="entry.123456789" required>
+
+        <label>聯絡電話 <span style="color:red;">*</span></label>
+        <input type="tel" name="entry.987654321" placeholder="請輸入電話號碼" required>
+
+        <label>地點 <span style="color:red;">*</span></label>
+        <select name="entry.456789123" required>
+            <option value="">選擇部門</option>
+            <option value="營運部">營運部</option>
+            <option value="財務部">財務部</option>
+            <option value="人力資源部">人力資源部</option>
+        </select>
+
+        <label>所在樓層 <span style="color:red;">*</span></label>
+        <input type="text" name="entry.789123456" required>
+
+        <label>預約維修日期 <span style="color:red;">*</span></label>
+        <input type="date" name="entry.321654987" required>
+
+        <label>問題描述 <span style="color:red;">*</span></label>
+        <textarea name="entry.654321987" rows="5" required></textarea>
+
+        <button type="submit">提交</button>
+    </form>
+
+    <!-- 固定加入這段 -->
+    <iframe name="hidden_iframe" style="display:none;"></iframe>
+
+    <!-- 提交成功提示（可選） -->
+    <script>
+        let submitted = false;
+        window.addEventListener("load", () => {
+            if (submitted) {
+                alert("預約成功！");
+                submitted = false;
+            }
+        });
+    </script>
+</body>
+</html>
